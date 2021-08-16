@@ -5,15 +5,16 @@ import HomePage from "./pages/HomePage/Homepage.component";
 import ShopPage from "./pages/ShopPage/ShopPage.component";
 import Header from "./components/Header/Header.component";
 import LoginAndRegisterPage from "./pages/LoginAndRegisterPage/LoginAndRegisterPage.component";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 const App = () => {
   const [currentUser, setCurrentUser] = React.useState(null);
   React.useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+    auth.onAuthStateChanged(async (user) => {
+      createUserProfileDocument(user);
     });
   }, []);
+
   return (
     <div>
       <Header currentUser={currentUser} />
