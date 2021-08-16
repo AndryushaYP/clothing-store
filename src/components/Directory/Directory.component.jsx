@@ -40,7 +40,7 @@ const Directory = () => {
   return (
     <section className="directory-menu">
       {sections.map(({ title, imageUrl, id, size }) => (
-        <MenuItem key={id} title={title.toUpperCase()} imageUrl={imageUrl} size={size} />
+        <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
       ))}
     </section>
   );
