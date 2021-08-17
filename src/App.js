@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import HomePage from "./pages/HomePage/Homepage.component";
 import ShopPage from "./pages/ShopPage/ShopPage.component";
 import Header from "./components/Header/Header.component";
@@ -38,7 +38,10 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
-        <Route path="/signin" component={LoginAndRegisterPage} />
+        <Route
+          path="/signin"
+          render={() => (currentUser ? <Redirect to="/" /> : <LoginAndRegisterPage />)}
+        />
       </Switch>
     </div>
   );
