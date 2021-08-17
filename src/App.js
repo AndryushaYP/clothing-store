@@ -6,30 +6,35 @@ import ShopPage from "./pages/ShopPage/ShopPage.component";
 import Header from "./components/Header/Header.component";
 import LoginAndRegisterPage from "./pages/LoginAndRegisterPage/LoginAndRegisterPage.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentUser } from "./redux/user/user.actions";
 
 const App = () => {
-  const [currentUser, setCurrentUser] = React.useState(null);
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state.user);
+  const { currentUser } = userState;
+
   React.useEffect(() => {
     auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
+          dispatch(
+            setCurrentUser({
+              id: snapShot.id,
+              ...snapShot.data(),
+            })
+          );
         });
       }
-      setCurrentUser(userAuth);
+      dispatch(setCurrentUser(userAuth));
     });
   }, []);
 
-  console.log(currentUser);
-
   return (
     <div>
-      <Header currentUser={currentUser} />
+      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
