@@ -8,11 +8,11 @@ import LoginAndRegisterPage from "./pages/LoginAndRegisterPage/LoginAndRegisterP
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
+import { selectCurrentUser } from "./redux/user/user.selectors";
 
 const App = () => {
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state.user);
-  const { currentUser } = userState;
+  const currentUser = useSelector((state) => selectCurrentUser(state));
 
   React.useEffect(() => {
     auth.onAuthStateChanged(async (userAuth) => {
