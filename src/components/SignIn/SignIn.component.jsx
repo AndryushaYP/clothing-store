@@ -14,15 +14,15 @@ const SignIn = () => {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setData({ [name]: value });
+    setData({ ...data, [name]: value });
   };
   return (
     <div className="sign-in">
-      <h2>I already have an account</h2>
+      <h2 className="title">I already have an account</h2>
       <span>Sign in with your email and password</span>
       <form action="" onSubmit={handleSubmit}>
         <FormInput
-          label="email"
+          label="Email"
           name="email"
           type="email"
           value={data.email}
@@ -30,7 +30,7 @@ const SignIn = () => {
           required
         />
         <FormInput
-          label="password"
+          label="Password"
           name="password"
           type="password"
           value={data.password}

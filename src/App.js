@@ -10,10 +10,22 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 const App = () => {
   const [currentUser, setCurrentUser] = React.useState(null);
   React.useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      createUserProfileDocument(user);
+    auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot((snapShot) => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
+          });
+        });
+      }
+      setCurrentUser(userAuth);
     });
   }, []);
+
+  console.log(currentUser);
 
   return (
     <div>
