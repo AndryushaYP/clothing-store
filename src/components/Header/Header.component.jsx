@@ -2,11 +2,15 @@ import React from "react";
 import "./Header.styles.scss";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
+import CartIcon from "../CartIcon/CartIcon.component";
+import CartDropdown from "../CartDropdown/CartDropdown.component";
 import { auth } from "../../firebase/firebase.utils";
 import { useSelector } from "react-redux";
 
 const Header = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
+  const isHidden = useSelector((state) => state.cart.hidden);
+
   return (
     <header className="header">
       <Link className="logo-container" to="/">
@@ -28,7 +32,9 @@ const Header = () => {
             SIGN OUT
           </Link>
         )}
+        <CartIcon />
       </nav>
+      {!isHidden && <CartDropdown />}
     </header>
   );
 };
