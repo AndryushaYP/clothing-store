@@ -29,10 +29,6 @@ export const OptionsContainer = styled.nav`
   justify-content: flex-end;
 `;
 
-export const OptionDiv = styled.div`
-  ${OptionsContainerStyles}
-`;
-
 export const OptionLink = styled(Link)`
   ${OptionsContainerStyles}
 `;

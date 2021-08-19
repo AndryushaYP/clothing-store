@@ -1,5 +1,5 @@
 import React from "react";
-import "./SignUp.styles.scss";
+import { SignUpContainer, TitleContainer, SubtitleContainer, FormContainer } from "./SignUp.styles";
 import FormInput from "../FormInput/FormInput.component";
 import CustomButton from "../CustomButton/CustomButton.component";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
@@ -35,10 +35,10 @@ const SignUp = () => {
   };
 
   return (
-    <section className="sign-up">
-      <h2 className="title">I do have a account</h2>
-      <span>Sign up with your email and password</span>
-      <form className="sign-up-form" onSubmit={handleSubmit}>
+    <SignUpContainer>
+      <TitleContainer>I do have a account</TitleContainer>
+      <SubtitleContainer>Sign up with your email and password</SubtitleContainer>
+      <FormContainer onSubmit={handleSubmit}>
         <FormInput
           type="text"
           name="displayName"
@@ -72,8 +72,8 @@ const SignUp = () => {
           required
         />
         <CustomButton type="submit">SIGN UP</CustomButton>
-      </form>
-    </section>
+      </FormContainer>
+    </SignUpContainer>
   );
 };
 

@@ -1,0 +1,21 @@
+import styled from "styled-components";
+
+export const SignInContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+`;
+
+export const TitleContainer = styled.h2`
+  margin: 10px 0;
+`;
+
+export const ButtonsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const FormContainer = styled.form``;
+
+export const SubtitleContainer = styled.span``;

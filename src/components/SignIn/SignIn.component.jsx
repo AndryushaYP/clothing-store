@@ -1,5 +1,11 @@
 import React from "react";
-import "./SignIn.styles.scss";
+import {
+  SignInContainer,
+  TitleContainer,
+  SubtitleContainer,
+  ButtonsContainer,
+  FormContainer,
+} from "./SignIn.styles";
 import FormInput from "../FormInput/FormInput.component";
 import CustomButton from "../CustomButton/CustomButton.component";
 import { auth, signWithGoogle } from "../../firebase/firebase.utils";
@@ -25,10 +31,10 @@ const SignIn = () => {
     setData({ ...data, [name]: value });
   };
   return (
-    <div className="sign-in">
-      <h2 className="title">I already have an account</h2>
-      <span>Sign in with your email and password</span>
-      <form action="" onSubmit={handleSubmit}>
+    <SignInContainer>
+      <TitleContainer className="title">I already have an account</TitleContainer>
+      <SubtitleContainer>Sign in with your email and password</SubtitleContainer>
+      <FormContainer action="" onSubmit={handleSubmit}>
         <FormInput
           label="Email"
           name="email"
@@ -46,14 +52,14 @@ const SignIn = () => {
           required
         />
 
-        <div className="buttons">
+        <ButtonsContainer>
           <CustomButton type="submit">SIGN IN</CustomButton>
           <CustomButton isGoogleSignIn onClick={signWithGoogle}>
             SIGN IN WITH GOOGLE
           </CustomButton>
-        </div>
-      </form>
-    </div>
+        </ButtonsContainer>
+      </FormContainer>
+    </SignInContainer>
   );
 };
 
