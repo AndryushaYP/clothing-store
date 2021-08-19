@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import HomePage from "./pages/HomePage/HomePage";
+import HomePage from "./pages/HomePage/homepage";
 import ShopPage from "./pages/ShopPage/ShopPage.component";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.component";
 import Header from "./components/Header/Header.component";
