@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.styles.scss";
-import { Link } from "react-router-dom";
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from "./Header.styles";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CartIcon from "../CartIcon/CartIcon.component";
 import CartDropdown from "../CartDropdown/CartDropdown.component";
@@ -14,30 +14,24 @@ const Header = () => {
   const isHidden = useSelector((state) => selectCartHidden(state));
 
   return (
-    <header className="header">
-      <Link className="logo-container" to="/">
+    <HeaderContainer>
+      <LogoContainer to="/">
         <Logo className="logo" />
-      </Link>
-      <nav className="options">
-        <Link className="option" to="/shop">
-          SHOP
-        </Link>
-        <Link className="option" to="/contact">
-          CONTACT
-        </Link>
+      </LogoContainer>
+      <OptionsContainer>
+        <OptionLink to="/shop">SHOP</OptionLink>
+        <OptionLink to="/contact">CONTACT</OptionLink>
         {!currentUser ? (
-          <Link to="/signin" className="option">
-            SIGN IN
-          </Link>
+          <OptionLink to="/signin">SIGN IN</OptionLink>
         ) : (
-          <Link to="/" onClick={() => auth.signOut()} className="option">
+          <OptionLink to="/" onClick={() => auth.signOut()}>
             SIGN OUT
-          </Link>
+          </OptionLink>
         )}
         <CartIcon />
-      </nav>
+      </OptionsContainer>
       {!isHidden && <CartDropdown />}
-    </header>
+    </HeaderContainer>
   );
 };
 
