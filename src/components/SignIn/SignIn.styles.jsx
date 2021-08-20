@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SignInContainer = styled.section`
   display: flex;
   flex-direction: column;
-  width: 380px;
+  width: 25%;
 `;
 
 export const TitleContainer = styled.h2`
@@ -13,7 +13,8 @@ export const TitleContainer = styled.h2`
 export const ButtonsContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 
 export const FormContainer = styled.form``;

@@ -1,5 +1,11 @@
 import React from "react";
-import "./CheckoutPage.styles.scss";
+import {
+  CheckoutPageContainer,
+  CheckoutHeaderContainer,
+  HeaderBlockContainer,
+  TotalContainer,
+  TestWarningContainer,
+} from "./CheckoutPage.styles";
 import CheckoutItem from "../../components/CheckoutItem/CheckoutItem.component";
 import StripeButton from "../../components/StripeButton/StripeButton.component";
 
@@ -10,37 +16,37 @@ const CheckoutPage = () => {
   const total = useSelector((state) => selectCartTotal(state));
   const cartItems = useSelector((state) => selectCartItems(state));
   return (
-    <section className="checkout-page">
-      <div className="checkout-header">
-        <div className="header-block">
+    <CheckoutPageContainer>
+      <CheckoutHeaderContainer>
+        <HeaderBlockContainer>
           <span>Product</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Description</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Quantity</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Price</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Remove</span>
-        </div>
-      </div>
+        </HeaderBlockContainer>
+      </CheckoutHeaderContainer>
       {cartItems.map((item) => (
         <CheckoutItem key={item.id} item={item} />
       ))}
-      <div className="total">
+      <TotalContainer>
         <span>TOTAL: ${total}</span>
-      </div>
-      <div className="test-warning">
+      </TotalContainer>
+      <TestWarningContainer>
         *Plese use the following test credit card for payments*
         <br />
         4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
-      </div>
+      </TestWarningContainer>
       <StripeButton price={total} />
-    </section>
+    </CheckoutPageContainer>
   );
 };
 
