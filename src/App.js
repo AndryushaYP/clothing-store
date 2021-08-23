@@ -1,11 +1,12 @@
 import "./App.css";
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.component";
 import ShopPage from "./pages/ShopPage/ShopPage.component";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.component";
 import Header from "./components/Header/Header.component";
 import LoginAndRegisterPage from "./pages/LoginAndRegisterPage/LoginAndRegisterPage.component";
+import ProtectedRoute from "./components/HOC/ProtectedRoute/ProtectedRoute.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
@@ -40,10 +41,11 @@ const App = () => {
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
         <Route exact path="/checkout" component={CheckoutPage} />
-        <Route
+        <ProtectedRoute
           exact
+          currentUser={currentUser}
           path="/signin"
-          render={() => (currentUser ? <Redirect to="/" /> : <LoginAndRegisterPage />)}
+          component={LoginAndRegisterPage}
         />
       </Switch>
     </div>

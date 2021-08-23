@@ -12,6 +12,9 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  @media (max-width: 420px) {
+    flex-direction: column;
+  }
 `;
 
 export const LogoContainer = styled(Link)`
@@ -27,6 +30,9 @@ export const OptionsContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  @media (max-width: 420px) {
+    flex-direction: column;
+  }
 `;
 
 export const OptionLink = styled(Link)`
