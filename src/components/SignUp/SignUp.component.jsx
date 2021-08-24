@@ -2,9 +2,11 @@ import React from "react";
 import { SignUpContainer, TitleContainer, SubtitleContainer, FormContainer } from "./SignUp.styles";
 import FormInput from "../FormInput/FormInput.component";
 import CustomButton from "../CustomButton/CustomButton.component";
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import { signUpStart } from "../../redux/user/user.actions";
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const [data, setData] = React.useState({
     displayName: "",
     email: "",
@@ -19,14 +21,7 @@ const SignUp = () => {
       alert("Passwords dont match");
       return;
     }
-
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password);
-      await createUserProfileDocument(user, { displayName });
-      setData({ displayName: "", email: "", password: "", confirmPassword: "" });
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(signUpStart({ displayName, email, password }));
   };
 
   const handleChange = (e) => {

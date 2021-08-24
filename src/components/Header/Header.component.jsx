@@ -3,14 +3,15 @@ import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from "./
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CartIcon from "../CartIcon/CartIcon.component";
 import CartDropdown from "../CartDropdown/CartDropdown.component";
-import { auth } from "../../firebase/firebase.utils";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { signOutStart } from "../../redux/user/user.actions";
 
 const Header = () => {
   const currentUser = useSelector((state) => selectCurrentUser(state));
   const isHidden = useSelector((state) => selectCartHidden(state));
+  const dispatch = useDispatch();
 
   return (
     <HeaderContainer>
@@ -23,7 +24,7 @@ const Header = () => {
         {!currentUser ? (
           <OptionLink to="/signin">SIGN IN</OptionLink>
         ) : (
-          <OptionLink to="/" onClick={() => auth.signOut()}>
+          <OptionLink to="/" onClick={() => dispatch(signOutStart())}>
             SIGN OUT
           </OptionLink>
         )}

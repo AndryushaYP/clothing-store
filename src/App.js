@@ -7,31 +7,16 @@ import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.component";
 import Header from "./components/Header/Header.component";
 import LoginAndRegisterPage from "./pages/LoginAndRegisterPage/LoginAndRegisterPage.component";
 import ProtectedRoute from "./components/HOC/ProtectedRoute/ProtectedRoute.component";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentUser } from "./redux/user/user.actions";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "./redux/user/user.selectors";
+import { checkUserSession } from "./redux/user/user.actions";
 
 const App = () => {
-  const dispatch = useDispatch();
   const currentUser = useSelector((state) => selectCurrentUser(state));
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot((snapShot) => {
-          dispatch(
-            setCurrentUser({
-              id: snapShot.id,
-              ...snapShot.data(),
-            })
-          );
-        });
-      }
-      dispatch(setCurrentUser(userAuth));
-    });
+    dispatch(checkUserSession());
   }, []);
 
   return (
