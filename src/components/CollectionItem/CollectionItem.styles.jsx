@@ -19,13 +19,25 @@ export const CollectionItemContainer = styled.figure`
       display: flex;
     }
   }
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+      button {
+        opacity: unset;
+      }
+    }
+  }
 `;
 
 export const ImageContainer = styled.div`
   width: 100%;
   height: 95%;
   background-size: cover;
-  background-position: center;
+  background-position: cover;
   margin-bottom: 5px;
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
@@ -36,6 +48,13 @@ export const AddButton = styled(CustomButton)`
   position: absolute;
   top: 255px;
   display: none;
+
+  @media screen and (max-width: 800px) {
+    display: block;
+    opacity: 0.9;
+    min-width: unset;
+    padding: 0 10px;
+  }
 `;
 
 export const CollectionFooterContainer = styled.figcaption`
@@ -47,11 +66,11 @@ export const CollectionFooterContainer = styled.figcaption`
 `;
 
 export const NameContainer = styled.span`
-  width: 90%;
+  max-width: 90%;
   margin-bottom: 15px;
 `;
 
 export const PriceContainer = styled.span`
-  width: 10%;
+  min-width: 10%;
   text-align: end;
 `;

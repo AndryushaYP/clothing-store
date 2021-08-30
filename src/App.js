@@ -1,4 +1,3 @@
-import "./App.css";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.component";
@@ -10,6 +9,7 @@ import ProtectedRoute from "./components/HOC/ProtectedRoute/ProtectedRoute.compo
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
+import { GlobalStyle } from "./global.styles";
 
 const App = () => {
   const currentUser = useSelector((state) => selectCurrentUser(state));
@@ -17,10 +17,11 @@ const App = () => {
 
   React.useEffect(() => {
     dispatch(checkUserSession());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />

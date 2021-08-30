@@ -11,7 +11,8 @@ const ShopPage = () => {
 
   React.useEffect(() => {
     dispatch(fetchCollectionsStart());
-  }, []);
+  }, [dispatch]);
+
   let { path } = useRouteMatch();
   return (
     <ShopPageContainer>

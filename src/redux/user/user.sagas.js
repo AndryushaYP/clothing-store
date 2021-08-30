@@ -28,6 +28,7 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
 export function* signInWithGoogle() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider);
+    console.log(user);
     yield getSnapshotFromUserAuth(user);
   } catch (err) {
     yield put(signInFailure(err));
@@ -62,10 +63,6 @@ export function* signOut() {
   }
 }
 
-export function* onSignOutStart() {
-  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
-}
-
 export function* signUp({ payload: { email, password, displayName } }) {
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
@@ -77,6 +74,10 @@ export function* signUp({ payload: { email, password, displayName } }) {
 
 export function* signInAfterSignUp({ payload: { user, additionalData } }) {
   yield getSnapshotFromUserAuth(user, additionalData);
+}
+
+export function* onSignOutStart() {
+  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
 }
 
 export function* onSignUpStart() {
