@@ -9,6 +9,7 @@ import {
 } from "./MenuItem.styles";
 
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => {
+  console.log(match);
   return (
     <MenuItemContainer size={size} onClick={() => history.push(`${match.url}${linkUrl}`)}>
       <BackgroundImageContainer imageUrl={imageUrl} className="background-image" />
