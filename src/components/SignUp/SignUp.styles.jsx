@@ -4,6 +4,9 @@ export const SignUpContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 25%;
+  @media screen and (max-width: 800px) {
+    width: 90%;
+  }
 `;
 
 export const TitleContainer = styled.h2`
