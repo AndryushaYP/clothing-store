@@ -39,7 +39,6 @@ const App = () => {
               exact
               path="/signin"
               render={() => (currentUser ? <Redirect to="/" /> : <LoginAndRegisterPage />)}
-              component={LoginAndRegisterPage}
             />
           </Suspense>
         </ErrorBoundary>
