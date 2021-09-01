@@ -9,13 +9,18 @@ import {
 } from "./CollectionItem.styles";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/cart/cart.actions";
+import { setSelectedItem } from "../../redux/shop/shop.actions";
 
 const CollectionItem = ({ item }) => {
   const { name, price, imageUrl } = item;
   const dispatch = useDispatch();
   return (
     <CollectionItemContainer>
-      <ImageContainer imageUrl={imageUrl} className="image" />
+      <ImageContainer
+        imageUrl={imageUrl}
+        className="image"
+        onClick={() => dispatch(setSelectedItem(item))}
+      />
       <CollectionFooterContainer>
         <NameContainer>{name}</NameContainer>
         <PriceContainer>${price}</PriceContainer>

@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   collections: null,
   isFetching: false,
   error: null,
+  selectedItem: null,
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {
@@ -26,6 +27,17 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         error: action.payload,
+      };
+    case ShopActionsTypes.SET_SELECTED_ITEM:
+      return {
+        ...state,
+        selectedItem: action.payload,
+      };
+
+    case ShopActionsTypes.REMOVE_SELECTED_ITEM:
+      return {
+        ...state,
+        selectedItem: null,
       };
     default:
       return state;
