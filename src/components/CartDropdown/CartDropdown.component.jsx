@@ -13,7 +13,6 @@ import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
 const CartDropdown = ({ history }) => {
   const cartItems = useSelector((state) => selectCartItems(state));
-  console.log(cartItems);
   const dispatch = useDispatch();
   return (
     <CartDropdownContainer>
